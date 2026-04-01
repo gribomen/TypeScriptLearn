@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-let info = {
+{
     "officeId": 45,
     "isOpened": false,
     "contacts": {
@@ -10,5 +8,4 @@ let info = {
             "city": "Москва"
         }
     }
-};
-//# sourceMappingURL=app.js.map
+}

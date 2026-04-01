@@ -1,20 +1,21 @@
-function getFullName(userEntity: { firstname: string, surname: string }): string {
-    //Таким непотребством больше не занимаемся
-    //if (typeof firstname !== 'string') {
-    //    return new Error("!!!");
-    //}
-    return `${userEntity.firstname} ${userEntity.surname}`;
-}
-
-const user = {
-    firstname: 'Вячеслав',
-    surname: 'Гриб',
-    city: 'Ust-Labinsk',
-    age: 33,
-    skills: {
-        dev: true,
-        devops: true
+let info: {
+    officeId: number;
+    isOpened: boolean;
+    contacts: {
+        phone: string;
+        email: string;
+        address: {
+            city: string;
+        };
+    };
+} = {
+    "officeId": 45,
+    "isOpened": false,
+    "contacts": {
+        "phone": "+79100000000",
+        "email": "my@email.ru",
+        "address": {
+            "city": "Москва"
+        }
     }
 }
-
-console.log(getFullName(user));
