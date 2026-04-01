@@ -1,12 +1,12 @@
-const skills: string[] = ['Dev', 'DevOps', 'Testing'];
+const skill: [number, string] = [1, 'Dev'];
+const [id, skillName] = skill;
 
-for (const skill of skills) {
-    console.log(skill.toLowerCase());
-}
+//const id = skill[0];
+//const skillName = skill[1];
 
-const res = skills
-    .filter((s: string) => s !== "DevOps")
-    .map(s => s + "!")
-    .reduce((a, b) => a + b);
+//skill.push('sdfsf');
+//const  sdf = skill[2];
+//skill.pop()
 
-console.log(res);
+const arr: [number, string, ...boolean[]] = [1, 'sdf', true, true, false];
+console.log(arr);

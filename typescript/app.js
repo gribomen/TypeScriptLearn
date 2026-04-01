@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const skills = ['Dev', 'DevOps', 'Testing'];
-for (const skill of skills) {
-    console.log(skill.toLowerCase());
-}
-const res = skills
-    .filter((s) => s !== "DevOps")
-    .map(s => s + "!")
-    .reduce((a, b) => a + b);
-console.log(res);
+const skill = [1, 'Dev'];
+const [id, skillName] = skill;
+//const id = skill[0];
+//const skillName = skill[1];
+//skill.push('sdfsf');
+//const  sdf = skill[2];
+//skill.pop()
+const arr = [1, 'sdf', true, true, false];
+console.log(arr);
 //# sourceMappingURL=app.js.map
