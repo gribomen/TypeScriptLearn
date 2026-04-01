@@ -1,5 +1,52 @@
-const skill: readonly [number, string] = [1, 'Dev'];
+enum statusCode {
+    SUCCESS = 1,
+    IN_PROCESS,
+    FAILED = 'f'
+}
 
-const skills: ReadonlyArray<string> = ['Dev', 'DevOps'];
+const res = {
+    message: 'Платеж успешен',
+    statusCode: statusCode.SUCCESS
+}
 
-skill.push();
+
+// 's' - успех
+// 'p' - в процессе
+// 'f' - отклонён
+
+
+if (res.statusCode === statusCode.SUCCESS) {
+
+}
+
+
+function action(status: statusCode) {
+
+}
+
+action(statusCode.SUCCESS);
+action(1);
+//action(2);
+//action('p');
+function compute() {
+    return 3;
+}
+
+
+//enum Roles {
+//    ADMIN = 1,
+//    USER = compute()
+//}
+
+//function test(x: { ADMIN: number }) {
+
+//}
+
+//test(Roles);
+
+const enum Roles {
+    ADMIN = 1,
+    USER = 2
+}
+
+const res2 = Roles.ADMIN;
