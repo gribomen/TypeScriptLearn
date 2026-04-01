@@ -1,21 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function getFullName(userEntity) {
-    //Таким непотребством больше не занимаемся
-    //if (typeof firstname !== 'string') {
-    //    return new Error("!!!");
-    //}
-    return `${userEntity.firstname} ${userEntity.surname}`;
+const skills = ['Dev', 'DevOps', 'Testing'];
+for (const skill of skills) {
+    console.log(skill.toLowerCase());
 }
-const user = {
-    firstname: 'Вячеслав',
-    surname: 'Гриб',
-    city: 'Ust-Labinsk',
-    age: 33,
-    skills: {
-        dev: true,
-        devops: true
-    }
-};
-console.log(getFullName(user));
+const res = skills
+    .filter((s) => s !== "DevOps")
+    .map(s => s + "!")
+    .reduce((a, b) => a + b);
+console.log(res);
 //# sourceMappingURL=app.js.map
