@@ -1,14 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function getFullName(firstname, surname) {
+function getFullName(userEntity) {
     //Таким непотребством больше не занимаемся
     //if (typeof firstname !== 'string') {
     //    return new Error("!!!");
     //}
-    return `${firstname} ${surname}`;
+    return `${userEntity.firstname} ${userEntity.surname}`;
 }
-const getFullNameArrow = (firstname, surname) => {
-    return `${firstname} ${surname}`;
+const user = {
+    firstname: 'Вячеслав',
+    surname: 'Гриб',
+    city: 'Ust-Labinsk',
+    age: 33,
+    skills: {
+        dev: true,
+        devops: true
+    }
 };
-console.log(getFullName("Гриб", "Вячеслав"));
+console.log(getFullName(user));
 //# sourceMappingURL=app.js.map
