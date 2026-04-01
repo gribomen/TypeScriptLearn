@@ -1,7 +1,13 @@
-let revenue = 1000;
-let bonus: string = '500';
-let c: string = 'sdf';
-let d: boolean = true;
+function getFullName(firstname: string, surname: string) {
+    //Таким непотребством больше не занимаемся
+    //if (typeof firstname !== 'string') {
+    //    return new Error("!!!");
+    //}
+    return `${firstname} ${surname}`;
+}
 
-let res: number = revenue + Number.parseInt(bonus);
-console.log(res);
+const getFullNameArrow = (firstname: string, surname: string): string => {
+    return `${firstname} ${surname}`;
+}
+
+console.log(getFullName("Гриб", "Вячеслав"));
