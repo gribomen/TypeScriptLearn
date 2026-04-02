@@ -1,37 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function logId(id) {
-    if (typeof id === 'string') {
-        console.log(id);
-    }
-    else if (typeof id === 'number') {
-        console.log(id);
-    }
-    else {
-        console.log(id);
-    }
+var RequestType;
+(function (RequestType) {
+    RequestType["GET"] = "get";
+    RequestType["POST"] = "post";
+})(RequestType || (RequestType = {}));
+function fetchWithAuth(url, method) {
+    return 1;
 }
-function logError(err) {
-    if (Array.isArray(err)) {
-        console.log(err);
-    }
-    else {
-        console.log(err);
-    }
-}
-function logObject(obj) {
-    if ('a' in obj) {
-        console.log(obj.a);
-    }
-    else {
-        console.log(obj.b);
-    }
-}
-function logMultipleIds(a, b) {
-    if (a === b) {
-    }
-    else {
-        console.log(a);
-    }
-}
-//# sourceMappingURL = app.js.map
+fetchWithAuth("s", "get");
+//fetchWithAuth("s", "s");
+let a = 'sdfefw';
+let method = '3';
+method = 'post';
+fetchWithAuth('s', method);
+//# sourceMappingURL=app.js.map
