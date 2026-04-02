@@ -1,36 +1,44 @@
-//type httpMethod = 'post' | 'get';
-
-//function fetchWithAuth(url: string, method: httpMethod): 1 | -1 {
-//    return 1;
-//}
-
-//fetchWithAuth("s", "get");
-
-//let method = 'post';
-
-//fetchWithAuth('s', method as 'post')
-
-type User = {
+interface User {
     name: string,
     age: number,
     skills: string[]
+    log: (id: number) => string;
 }
 
-type Role = {
-    name: string;
-    id: number
+interface Role {
+    roleId: number;
 }
 
-//type UserWithRole = User|Role;
-//type UserWithRole = User & Role;
-type UserWithRole = {
-    user: User,
-    role: Role
+interface UserWithRole extends User, Role {
+    createdAt: Date;
+}
+
+type User2 = {
+    name: string,
+    age: number,
+    skills: string[],
+
+    log: (id: number) => string;
 }
 
 let user: UserWithRole = {
     name: 'asd',
     age: 33,
     skills: ['1', '2'],
-    id: 1
+    roleId: 1,
+    createdAt: new Date(),
+
+    log(id) {
+        return '';
+    }
 }
+
+interface UserDic {
+    [index: number]: User
+}
+
+type UserDic2 = {
+    [index: number]: User
+}
+
+type ud = Record<number, User>; //Какой-то generic, какой-то record
