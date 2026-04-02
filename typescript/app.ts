@@ -30,10 +30,7 @@ var TENTHS_LESS_THAN_HUNDRED: readonly string[] = [
  */
 function toWords(number: number | string, asOrdinal: boolean | undefined): string {
     let words: string;
-    let num = number;
-    if (typeof number == "string") {
-        num = parseInt(number, 10)
-    }
+    let num = parseInt(number + "", 10);
 
     if (!isFinite(num)) {
         throw new TypeError(
@@ -106,6 +103,10 @@ function generateWords(number: number | string, last_word?: string[]): string {
         remainder = number % ONE_QUADRILLION;
         word = generateWords(Math.floor(number / ONE_QUADRILLION)) +
             ' quadrillion,';
+
+    } else if (typeof number !== "string" && number > MAX) {
+        throw new RangeError('Number is too large');
+
     } else {
         throw new RangeError('Number is too large');
     }
