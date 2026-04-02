@@ -1,52 +1,35 @@
-enum statusCode {
-    SUCCESS = 1,
-    IN_PROCESS,
-    FAILED = 'f'
+function logId(id: string | number | boolean) {
+    if (typeof id === 'string') {
+        console.log(id);
+    } else if (typeof id === 'number') {
+        console.log(id);
+    } else {
+        console.log(id);
+    }
 }
 
-const res = {
-    message: 'Платеж успешен',
-    statusCode: statusCode.SUCCESS
+function logError(err: string | string[]) {
+    if (Array.isArray(err)) {
+        console.log(err);
+    } else {
+        console.log(err);
+    }
 }
 
+function logObject(obj: { a: number } | { b: number }) {
+    if ('a' in obj) {
+        console.log(obj.a);
 
-// 's' - успех
-// 'p' - в процессе
-// 'f' - отклонён
+    } else {
+        console.log(obj.b);
 
-
-if (res.statusCode === statusCode.SUCCESS) {
-
+    }
 }
 
+function logMultipleIds(a: string | number, b: string | boolean) {
+    if (a === b) {
 
-function action(status: statusCode) {
-
+    } else {
+        console.log(a);
+    }
 }
-
-action(statusCode.SUCCESS);
-action(1);
-//action(2);
-//action('p');
-function compute() {
-    return 3;
-}
-
-
-//enum Roles {
-//    ADMIN = 1,
-//    USER = compute()
-//}
-
-//function test(x: { ADMIN: number }) {
-
-//}
-
-//test(Roles);
-
-const enum Roles {
-    ADMIN = 1,
-    USER = 2
-}
-
-const res2 = Roles.ADMIN;

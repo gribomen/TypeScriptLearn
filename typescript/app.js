@@ -1,40 +1,37 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var statusCode;
-(function (statusCode) {
-    statusCode[statusCode["SUCCESS"] = 1] = "SUCCESS";
-    statusCode[statusCode["IN_PROCESS"] = 2] = "IN_PROCESS";
-    statusCode["FAILED"] = "f";
-})(statusCode || (statusCode = {}));
-const res = {
-    message: 'Платеж успешен',
-    statusCode: statusCode.SUCCESS
-};
-// 's' - успех
-// 'p' - в процессе
-// 'f' - отклонён
-if (res.statusCode === statusCode.SUCCESS) {
+function logId(id) {
+    if (typeof id === 'string') {
+        console.log(id);
+    }
+    else if (typeof id === 'number') {
+        console.log(id);
+    }
+    else {
+        console.log(id);
+    }
 }
-function action(status) {
+function logError(err) {
+    if (Array.isArray(err)) {
+        console.log(err);
+    }
+    else {
+        console.log(err);
+    }
 }
-action(statusCode.SUCCESS);
-action(1);
-//action(2);
-//action('p');
-function compute() {
-    return 3;
+function logObject(obj) {
+    if ('a' in obj) {
+        console.log(obj.a);
+    }
+    else {
+        console.log(obj.b);
+    }
 }
-//enum Roles {
-//    ADMIN = 1,
-//    USER = compute()
-//}
-//function test(x: { ADMIN: number }) {
-//}
-//test(Roles);
-var Roles;
-(function (Roles) {
-    Roles[Roles["ADMIN"] = 1] = "ADMIN";
-    Roles[Roles["USER"] = 2] = "USER";
-})(Roles || (Roles = {}));
-const res2 = Roles.ADMIN;
-//# sourceMappingURL=app.js.map
+function logMultipleIds(a, b) {
+    if (a === b) {
+    }
+    else {
+        console.log(a);
+    }
+}
+//# sourceMappingURL = app.js.map
