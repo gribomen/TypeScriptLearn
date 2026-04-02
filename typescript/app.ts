@@ -1,18 +1,36 @@
-enum RequestType {
-    GET = 'get',
-    POST = 'post'
+//type httpMethod = 'post' | 'get';
+
+//function fetchWithAuth(url: string, method: httpMethod): 1 | -1 {
+//    return 1;
+//}
+
+//fetchWithAuth("s", "get");
+
+//let method = 'post';
+
+//fetchWithAuth('s', method as 'post')
+
+type User = {
+    name: string,
+    age: number,
+    skills: string[]
 }
 
-function fetchWithAuth(url: string, method: 'post' | 'get'): 1 | -1 {
-    return 1;
+type Role = {
+    name: string;
+    id: number
 }
 
-fetchWithAuth("s", "get");
-//fetchWithAuth("s", "s");
+//type UserWithRole = User|Role;
+//type UserWithRole = User & Role;
+type UserWithRole = {
+    user: User,
+    role: Role
+}
 
-let a: 'sdfefw' = 'sdfefw';
-
-let method = '3';
-method = 'post';
-
-fetchWithAuth('s', method as 'post')
+let user: UserWithRole = {
+    name: 'asd',
+    age: 33,
+    skills: ['1', '2'],
+    id: 1
+}
