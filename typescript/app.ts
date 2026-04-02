@@ -11,7 +11,7 @@ let ONE_MILLION = 1000000;
 let ONE_BILLION = 1000000000;           //         1.000.000.000 (9)
 let ONE_TRILLION = 1000000000000;       //     1.000.000.000.000 (12)
 let ONE_QUADRILLION = 1000000000000000; // 1.000.000.000.000.000 (15)
-let MAX: bigint = 9007199254740992n;             // 9.007.199.254.740.992 (15)
+let MAX = 9007199254740992;             // 9.007.199.254.740.992 (15)
 
 const LESS_THAN_TWENTY: readonly string[] = [
     'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
@@ -30,9 +30,12 @@ var TENTHS_LESS_THAN_HUNDRED: readonly string[] = [
  * @param {boolean} [asOrdinal] - Deprecated, use toWordsOrdinal() instead!
  * @returns {string}
  */
-function toWords(number: number | string, asOrdinal: boolean): string {
+function toWords(number: number | string, asOrdinal: boolean | undefined): string {
     let words: string = "";
     let num = number;
+    if (typeof number == "string") {
+        num = parseInt(number, 10)
+    }
 
     if (!isFinite(num)) {
         throw new TypeError(
