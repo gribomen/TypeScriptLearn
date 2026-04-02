@@ -1,44 +1,28 @@
-interface User {
-    name: string,
-    age: number,
-    skills: string[]
-    log: (id: number) => string;
+//Переопределение типов
+//interface User {
+//    name: string
+//}
+
+//interface User {
+//    age: number
+//}
+
+
+//type User = {
+//    name: string
+//}
+
+//type User = {
+//    age: number
+//}
+
+//const user: User = {
+//    name: 'as',
+//    age: 33
+//}
+
+type ID = string | number;
+
+interface IDI {
+    ID: string | number
 }
-
-interface Role {
-    roleId: number;
-}
-
-interface UserWithRole extends User, Role {
-    createdAt: Date;
-}
-
-type User2 = {
-    name: string,
-    age: number,
-    skills: string[],
-
-    log: (id: number) => string;
-}
-
-let user: UserWithRole = {
-    name: 'asd',
-    age: 33,
-    skills: ['1', '2'],
-    roleId: 1,
-    createdAt: new Date(),
-
-    log(id) {
-        return '';
-    }
-}
-
-interface UserDic {
-    [index: number]: User
-}
-
-type UserDic2 = {
-    [index: number]: User
-}
-
-type ud = Record<number, User>; //Какой-то generic, какой-то record
