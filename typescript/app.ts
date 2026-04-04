@@ -1,33 +1,41 @@
-function logID(id: string | number): void {
-    //console.log(id);
+function genereateError(message: string): never {
+    throw new Error(message);
 }
 
-const a = logID(1);
+function dumpError(): never {
+    while (true) { }
+}
 
-console.log(a);
+function rec(): never {
+    return rec();
+}
 
-function multiply(f: number, s?: number) {
-    if (!s) {
-        return f * f;
+type paymentAcrion = 'refund' | 'checkout' | 'reject';
+
+function processAction(action: paymentAcrion) {
+    switch (action) {
+        case 'refund':
+            //...
+            break;
+        case 'checkout':
+            //...
+            break;
+        case 'reject':
+            //...
+            break;
+        default:
+            const _: never = action;
+            throw new Error('Нет такого action')
     }
 }
 
-type voidFunc = () => void;
 
-const f1: voidFunc = () => {
 
+function isString(x: string | number): boolean {
+    if (typeof x === "string") {
+        return true;
+    } else if (typeof x === "number") {
+        return false;
+    }
+    throw new Error('Какой-то странный тип.');
 }
-
-const f2: voidFunc = () => {
-    return true
-}
-
-const b = f2();
-
-const skills = ['Dev', 'DevOps'];
-
-const user = {
-    s: ['s']
-}
-
-skills.forEach((skill) => user.s.push(skill))

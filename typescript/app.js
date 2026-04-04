@@ -1,24 +1,37 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function logID(id) {
-    //console.log(id);
+function genereateError(message) {
+    throw new Error(message);
 }
-const a = logID(1);
-console.log(a);
-function multiply(f, s) {
-    if (!s) {
-        return f * f;
+function dumpError() {
+    while (true) { }
+}
+function rec() {
+    return rec();
+}
+function processAction(action) {
+    switch (action) {
+        case 'refund':
+            //...
+            break;
+        case 'checkout':
+            //...
+            break;
+        case 'reject':
+            //...
+            break;
+        default:
+            const _ = action;
+            throw new Error('Нет такого action');
     }
 }
-const f1 = () => {
-};
-const f2 = () => {
-    return true;
-};
-const b = f2();
-const skills = ['Dev', 'DevOps'];
-const user = {
-    s: ['s']
-};
-skills.forEach((skill) => user.s.push(skill));
+function isString(x) {
+    if (typeof x === "string") {
+        return true;
+    }
+    else if (typeof x === "number") {
+        return false;
+    }
+    throw new Error('Какой-то странный тип.');
+}
 //# sourceMappingURL=app.js.map
