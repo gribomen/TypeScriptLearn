@@ -1,28 +1,37 @@
-//Переопределение типов
 //interface User {
-//    name: string
+//    login: string;
+//    password?: string;
 //}
 
-//interface User {
-//    age: number
-//}
+type User = {
+    login: string;
+    password?: string;
+}
 
+const user: User = {
+    login: 'a@a.ru'
+}
 
-//type User = {
-//    name: string
-//}
+function multiply(first: number, second?: number) {
+    if (second) {
+        return first * second;
+    }
+    return first;
+}
 
-//type User = {
-//    age: number
-//}
+multiply(5);
 
-//const user: User = {
-//    name: 'as',
-//    age: 33
-//}
+type UserPro = {
+    login: string;
+    password?: {
+        type: 'primary' | 'secondary'
+    }
+}
 
-type ID = string | number;
+function testPass(user: UserPro) {
+    const t = user.password?.type;
+}
 
-interface IDI {
-    ID: string | number
+function test(param?: string) {
+    const t = param ?? multiply(5);
 }
