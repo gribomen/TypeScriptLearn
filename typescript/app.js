@@ -1,19 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const n = null;
-const n1 = null;
-function getUser() {
-    if (Math.random() > 0.5) {
-        return null;
-    }
-    else {
-        return {
-            name: "Вася"
-        };
-    }
-}
-const user = getUser();
-if (user) {
-    const n55 = user.name;
-}
+let a = 5;
+let b = a.toString();
+let e = new String(a);
+let str = e.valueOf();
+let f = new Boolean(a).valueOf();
+let c = 'sdad';
+let d = parseInt(c);
+const user = {
+    name: 'Вася',
+    email: 'vasiliy@yandex.ru',
+    login: 'vasia'
+};
 //# sourceMappingURL=app.js.map

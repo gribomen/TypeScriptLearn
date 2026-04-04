@@ -1,26 +1,22 @@
-const n: null = null;
-const n1: any = null;
-//const n2: number = null;
-//const n3: string = null;
-//const n4: boolean = null;
-//const n5: undefined = null;
+let a = 5;
+let b: string = a.toString();
+let e = new String(a);
+let str = e.valueOf();
+let f: boolean = new Boolean(a).valueOf();
+
+let c = 'sdad';
+let d: number = parseInt(c);
+
 
 interface User {
-    name: string
+    name: string;
+    email: string;
+    login: string;
+
 }
 
-function getUser() {
-    if (Math.random() > 0.5) {
-        return null;
-    } else {
-        return {
-            name: "Вася"
-        } as User
-    }
-}
-
-const user = getUser();
-if (user) {
-    const n55 = user.name;
-
+const user: User = {
+    name: 'Вася',
+    email: 'vasiliy@yandex.ru',
+    login: 'vasia'
 }
