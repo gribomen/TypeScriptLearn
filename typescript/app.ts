@@ -1,55 +1,33 @@
-interface IPayment {
-    sum: number,
-    from: number,
-    to: number
+function logID(id: string | number): void {
+    //console.log(id);
 }
 
-interface IPaymentRequest extends IPayment { }
+const a = logID(1);
 
-// 1 Вариант
-//interface IPaymentResponse {
-//    status: "success" | "failed",
-//    data: IPaymentResponseAccept | IPaymentResponseReject
-//}
+console.log(a);
 
-//interface IPaymentResponseAccept extends IPayment {
-//    databaseId: number,
-//}
-
-//interface IPaymentResponseReject {
-//    errorMessage: string,
-//    errorCode: number
-//}
-
-enum PaymenStatus {
-    SUCCESS = 'success',
-    FAILED = 'failed'
+function multiply(f: number, s?: number) {
+    if (!s) {
+        return f * f;
+    }
 }
 
-interface IDataSuccess extends IPayment {
-    databaseId: number,
+type voidFunc = () => void;
+
+const f1: voidFunc = () => {
+
 }
 
-interface IDataFailed {
-    errorMessage: string,
-    errorCode: number
+const f2: voidFunc = () => {
+    return true
 }
 
-interface IResponse {
-    status: PaymenStatus,
-    data: IDataSuccess | IDataFailed
+const b = f2();
+
+const skills = ['Dev', 'DevOps'];
+
+const user = {
+    s: ['s']
 }
 
-interface IResponseSuccess {
-    status: PaymenStatus.SUCCESS,
-    data: IDataSuccess
-}
-
-interface IResponseFailed {
-    status: PaymenStatus.FAILED,
-    data: IDataFailed
-}
-
-//function get(): IResponseSuccess | IResponseFailed{
-
-//}
+skills.forEach((skill) => user.s.push(skill))
