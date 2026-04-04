@@ -1,37 +1,55 @@
-//interface User {
-//    login: string;
-//    password?: string;
+interface IPayment {
+    sum: number,
+    from: number,
+    to: number
+}
+
+interface IPaymentRequest extends IPayment { }
+
+// 1 Вариант
+//interface IPaymentResponse {
+//    status: "success" | "failed",
+//    data: IPaymentResponseAccept | IPaymentResponseReject
 //}
 
-type User = {
-    login: string;
-    password?: string;
+//interface IPaymentResponseAccept extends IPayment {
+//    databaseId: number,
+//}
+
+//interface IPaymentResponseReject {
+//    errorMessage: string,
+//    errorCode: number
+//}
+
+enum PaymenStatus {
+    SUCCESS = 'success',
+    FAILED = 'failed'
 }
 
-const user: User = {
-    login: 'a@a.ru'
+interface IDataSuccess extends IPayment {
+    databaseId: number,
 }
 
-function multiply(first: number, second?: number) {
-    if (second) {
-        return first * second;
-    }
-    return first;
+interface IDataFailed {
+    errorMessage: string,
+    errorCode: number
 }
 
-multiply(5);
-
-type UserPro = {
-    login: string;
-    password?: {
-        type: 'primary' | 'secondary'
-    }
+interface IResponse {
+    status: PaymenStatus,
+    data: IDataSuccess | IDataFailed
 }
 
-function testPass(user: UserPro) {
-    const t = user.password?.type;
+interface IResponseSuccess {
+    status: PaymenStatus.SUCCESS,
+    data: IDataSuccess
 }
 
-function test(param?: string) {
-    const t = param ?? multiply(5);
+interface IResponseFailed {
+    status: PaymenStatus.FAILED,
+    data: IDataFailed
 }
+
+//function get(): IResponseSuccess | IResponseFailed{
+
+//}
