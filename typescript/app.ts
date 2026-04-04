@@ -20,3 +20,20 @@ const user: User = {
     email: 'vasiliy@yandex.ru',
     login: 'vasia'
 }
+
+interface Admin {
+    name: string;
+    role: number;
+}
+
+const admin: Admin = {
+    ...user,
+    role: 1
+}
+
+function userToUser(user: User): Admin {
+    return {
+        name: user.name,
+        role: 1
+    }
+}
