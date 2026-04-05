@@ -1,23 +1,50 @@
-enum statusReq {
-    PUBLISHED = 'published',
-    DRAFT = 'draft',
-    DELETED = 'deleted'
+interface IPayment {
+    sum: number;
+    from: number;
+    to: number;
 }
 
-async function getFaqs(req: {
-    topicId: number;
-    status?: statusReq;
-}): Promise<{
-    question: string;
-    answer: string;
-    tags: string[];
-    likes: number;
-    status: statusReq;
-}[]> {
-    const res = await fetch('/faqs', {
-        method: 'POST',
-        body: JSON.stringify(req)
-    });
-    const data = await res.json();
-    return data;
+enum PaymentStatus {
+    Success = 'success',
+    Failed = 'failed',
+}
+
+interface IPaymentRequest extends IPayment { }
+
+interface IDataSuccess extends IPayment {
+    databaseId: number;
+}
+
+interface IDataFailed {
+    errorMessage: string;
+    errorCode: number;
+}
+
+interface IResponseSuccess {
+    status: PaymentStatus.Success;
+    data: IDataSuccess;
+}
+
+interface IResponseFailed {
+    status: PaymentStatus.Failed;
+    data: IDataFailed;
+}
+
+type f = (res: IResponseSuccess | IResponseFailed) => number;
+
+type Response = IResponseSuccess | IResponseFailed;
+
+function isSuccess(res: Response): res is IResponseSuccess {
+    if (res.status == PaymentStatus.Success) {
+        return true;
+    }
+    return false;
+}
+
+function getIdFromData(response: Response): number {
+    if (isSuccess(response)) {
+        return response.data.databaseId;
+    } else {
+        throw new Error(`Код ошибки ${response.data.errorCode} \n Сообщение ошибки: ${response.data.errorMessage}`);
+    }
 }
