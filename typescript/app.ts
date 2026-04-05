@@ -1,47 +1,15 @@
-
 interface User {
-    name: string;
-    email: string;
-    login: string;
-
+    name: string
 }
 
-const user: User = {
-    name: 'Вася',
-    email: 'vasiliy@yandex.ru',
-    login: 'vasia'
-}
+const a = {};
 
-interface Admin {
-    name: string;
-    role: number;
-}
+assertUser(a);
+a.name = 'Вася';
 
-function logId(id: string | number) {
-    if (isString(id)) {
-        console.log(id);
-    } else {
-        console.log(id);
+function assertUser(obj: unknown): asserts obj is User {
+    if (typeof obj === 'object' && !!obj && 'name' in obj) {
+        return;
     }
-}
-
-//Type Guard
-function isString(x: string | number): x is string {
-    return typeof x === 'string';
-}
-
-function isAdmin(user: User | Admin): user is Admin {
-    return 'role' in user;
-}
-
-function isAdminAlternative(user: User | Admin): user is Admin {
-    return (user as Admin).role !== undefined;
-}
-
-function setRoleZero(user: User | Admin) {
-    if (isAdmin(user)) {
-        user.role = 0;
-    } else {
-        throw new Error('Пользователь не админ');
-    }
+    throw new Error('Не пользователь');
 }
