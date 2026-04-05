@@ -1,15 +1,34 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-let a = 5;
-let b = a.toString();
-let e = new String(a);
-let str = e.valueOf();
-let f = new Boolean(a).valueOf();
-let c = 'sdad';
-let d = parseInt(c);
 const user = {
     name: 'Вася',
     email: 'vasiliy@yandex.ru',
     login: 'vasia'
 };
+function logId(id) {
+    if (isString(id)) {
+        console.log(id);
+    }
+    else {
+        console.log(id);
+    }
+}
+//Type Guard
+function isString(x) {
+    return typeof x === 'string';
+}
+function isAdmin(user) {
+    return 'role' in user;
+}
+function isAdminAlternative(user) {
+    return user.role !== undefined;
+}
+function setRoleZero(user) {
+    if (isAdmin(user)) {
+        user.role = 0;
+    }
+    else {
+        throw new Error('Пользователь не админ');
+    }
+}
 //# sourceMappingURL=app.js.map
