@@ -8,6 +8,12 @@ class CustomError extends Error {
     }
 }
 
+
+enum Status {
+    CONTINUE = 200,
+    ERROR = 404
+}
+
 interface User {
     id: number;
     firstName: string;
@@ -41,7 +47,7 @@ interface User {
 }
 
 interface IResponse {
-    status: number;
+    status: Status;
     ok: boolean;
     json(): Promise<any>;
 }
@@ -52,7 +58,7 @@ interface IResponseSuccess extends IResponse {
 interface IResponseReject extends IResponse {
 }
 
-const url = "https://dummyjson.com/us";
+const url = "https://dummyjson.com/users";
 
 function isSuccess(response: IResponseSuccess | IResponseReject): asserts response is IResponseSuccess {
 

@@ -5,7 +5,12 @@ class CustomError extends Error {
         this.name = "CustomError";
     }
 }
-const url = "https://dummyjson.com/us";
+var Status;
+(function (Status) {
+    Status[Status["CONTINUE"] = 200] = "CONTINUE";
+    Status[Status["ERROR"] = 404] = "ERROR";
+})(Status || (Status = {}));
+const url = "https://dummyjson.com/users";
 function isSuccess(response) {
     if (response.ok == true) {
         return;
