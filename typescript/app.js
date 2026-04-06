@@ -9,21 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class User {
-    set login(login) {
-        this._login = 'user-' + login;
-        this.createdAt = new Date();
+class Logger {
+    log(...args) {
+        console.log(...args);
     }
-    get login() {
-        return this._login;
-    }
-    getPassword(p) {
+    error(...args) {
         return __awaiter(this, void 0, void 0, function* () {
+            //Кинуть во внешнюю систему
+            console.log(...args);
         });
     }
 }
-const user = new User();
-user.login = 'myLogin';
-console.log(user);
-console.log(user.login);
+class User {
+    pay(paymentId) {
+        ///
+    }
+}
 //# sourceMappingURL=app.js.map
