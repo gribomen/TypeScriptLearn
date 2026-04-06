@@ -1,15 +1,18 @@
-interface User {
-    name: string
-}
-
-const a = {};
-
-assertUser(a);
-a.name = 'Вася';
-
-function assertUser(obj: unknown): asserts obj is User {
-    if (typeof obj === 'object' && !!obj && 'name' in obj) {
-        return;
+class User {
+    name: string;
+    constructor(name: string) {
+        this.name = name;
     }
-    throw new Error('Не пользователь');
 }
+
+const user = new User('Вася');
+console.log(user);
+user.name = 'Петя';
+console.log(user);
+
+class Admin {
+    role: number;
+}
+
+const admin = new Admin();
+admin.role = 1;
