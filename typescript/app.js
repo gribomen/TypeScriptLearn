@@ -1,22 +1,27 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var PaymentStatus;
-(function (PaymentStatus) {
-    PaymentStatus["Success"] = "success";
-    PaymentStatus["Failed"] = "failed";
-})(PaymentStatus || (PaymentStatus = {}));
-function isSuccess(res) {
-    if (res.status == PaymentStatus.Success) {
-        return true;
+class User {
+    constructor(skills) {
+        this.skills = skills;
     }
-    return false;
+    addSkill(skills) {
+        if (typeof skills == 'string') {
+            this.skills.push(skills);
+        }
+        else {
+            this.skills = this.skills.concat(skills);
+        }
+    }
 }
-function getIdFromData(response) {
-    if (isSuccess(response)) {
-        return response.data.databaseId;
+const user = new User(['3']);
+user.addSkill(['1', '2']);
+console.log(user);
+function run(distance) {
+    if (typeof distance == 'number') {
+        return 1;
     }
     else {
-        throw new Error(`Код ошибки ${response.data.errorCode} \n Сообщение ошибки: ${response.data.errorMessage}`);
+        return '';
     }
 }
 //# sourceMappingURL=app.js.map

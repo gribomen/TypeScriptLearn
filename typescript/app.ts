@@ -1,50 +1,32 @@
-interface IPayment {
-    sum: number;
-    from: number;
-    to: number;
-}
+class User {
+    skills: string[];
 
-enum PaymentStatus {
-    Success = 'success',
-    Failed = 'failed',
-}
-
-interface IPaymentRequest extends IPayment { }
-
-interface IDataSuccess extends IPayment {
-    databaseId: number;
-}
-
-interface IDataFailed {
-    errorMessage: string;
-    errorCode: number;
-}
-
-interface IResponseSuccess {
-    status: PaymentStatus.Success;
-    data: IDataSuccess;
-}
-
-interface IResponseFailed {
-    status: PaymentStatus.Failed;
-    data: IDataFailed;
-}
-
-type f = (res: IResponseSuccess | IResponseFailed) => number;
-
-type Response = IResponseSuccess | IResponseFailed;
-
-function isSuccess(res: Response): res is IResponseSuccess {
-    if (res.status == PaymentStatus.Success) {
-        return true;
+    constructor(skills: string[]) {
+        this.skills = skills;
     }
-    return false;
+
+    addSkill(skills: string): void;
+    addSkill(skills: string[]): void;
+    addSkill(skills: string | string[]): void {
+        if (typeof skills == 'string') {
+            this.skills.push(skills);
+        } else {
+            this.skills = this.skills.concat(skills);
+        }
+    }
 }
 
-function getIdFromData(response: Response): number {
-    if (isSuccess(response)) {
-        return response.data.databaseId;
+
+const user = new User(['3']);
+user.addSkill(['1', '2'])
+console.log(user);
+
+function run(distance: string): string;
+function run(distance: number): number;
+function run(distance: number | string): number | string {
+    if (typeof distance == 'number') {
+        return 1;
     } else {
-        throw new Error(`Код ошибки ${response.data.errorCode} \n Сообщение ошибки: ${response.data.errorMessage}`);
+        return '';
     }
 }
