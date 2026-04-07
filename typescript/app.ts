@@ -1,32 +1,78 @@
-class User {
-    skills: string[];
+type Product = {
+    id: number;
+    name: string;
+    price: number;
+}
 
-    constructor(skills: string[]) {
-        this.skills = skills;
-    }
-
-    addSkill(skills: string): void;
-    addSkill(skills: string[]): void;
-    addSkill(skills: string | string[]): void {
-        if (typeof skills == 'string') {
-            this.skills.push(skills);
-        } else {
-            this.skills = this.skills.concat(skills);
-        }
+class Delivery {
+    date: Date;
+    constructor(date: Date) {
+        this.date = date;
     }
 }
 
-
-const user = new User(['3']);
-user.addSkill(['1', '2'])
-console.log(user);
-
-function run(distance: string): string;
-function run(distance: number): number;
-function run(distance: number | string): number | string {
-    if (typeof distance == 'number') {
-        return 1;
-    } else {
-        return '';
+class HomeDelivery extends Delivery {
+    constructor(public adress: string, date: Date) {
+        super(date);
     }
 }
+
+class ShopDelivery extends Delivery {
+    constructor(public id: number) {
+        super(new Date());
+    }
+}
+
+type DeliveryOptions = HomeDelivery | ShopDelivery
+class Cart {
+    private productList: Product[] = [];
+    private delivery: DeliveryOptions;
+
+    public addProduct(product: Product): void {
+        this.productList.push(product);
+
+    }
+
+    public deleteProduct(id: number): void {
+        this.productList = this.productList.filter((p: Product) => p.id !== id);
+    }
+
+    public calculateCostItems(): number {
+        return this.productList.reduce((sum: number, product) => sum + product.price, 0)
+    }
+
+    public setDelivery(delivery: HomeDelivery | ShopDelivery): void {
+        this.delivery = delivery;
+    }
+
+    public checkout() {
+        return (this.delivery
+            && this.productList.length > 0) ? "Ok" : "";
+    }
+}
+
+const cart = new Cart();
+cart.addProduct({
+    name: "1",
+    price: 1,
+    id: 1
+})
+
+cart.addProduct({
+    name: "2",
+    price: 2,
+    id: 2
+})
+
+cart.addProduct({
+    name: "3",
+    price: 3,
+    id: 3
+})
+
+cart.deleteProduct(1);
+cart.calculateCostItems();
+
+cart.setDelivery(new HomeDelivery("sss", new Date("2025/05/03")));
+console.log(cart.checkout());
+

@@ -1,27 +1,61 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class User {
-    constructor(skills) {
-        this.skills = skills;
-    }
-    addSkill(skills) {
-        if (typeof skills == 'string') {
-            this.skills.push(skills);
-        }
-        else {
-            this.skills = this.skills.concat(skills);
-        }
+class Delivery {
+    constructor(date) {
+        this.date = date;
     }
 }
-const user = new User(['3']);
-user.addSkill(['1', '2']);
-console.log(user);
-function run(distance) {
-    if (typeof distance == 'number') {
-        return 1;
-    }
-    else {
-        return '';
+class HomeDelivery extends Delivery {
+    constructor(adress, date) {
+        super(date);
+        this.adress = adress;
     }
 }
+class ShopDelivery extends Delivery {
+    constructor(id) {
+        super(new Date());
+        this.id = id;
+    }
+}
+class Cart {
+    constructor() {
+        this.productList = [];
+    }
+    addProduct(product) {
+        this.productList.push(product);
+    }
+    deleteProduct(id) {
+        this.productList = this.productList.filter((p) => p.id !== id);
+    }
+    calculateCostItems() {
+        return this.productList.reduce((sum, product) => sum + product.price, 0);
+    }
+    setDelivery(delivery) {
+        this.delivery = delivery;
+    }
+    checkout() {
+        return (this.delivery
+            && this.productList.length > 0) ? "Ok" : "";
+    }
+}
+const cart = new Cart();
+cart.addProduct({
+    name: "1",
+    price: 1,
+    id: 1
+});
+cart.addProduct({
+    name: "2",
+    price: 2,
+    id: 2
+});
+cart.addProduct({
+    name: "3",
+    price: 3,
+    id: 3
+});
+cart.deleteProduct(1);
+cart.calculateCostItems();
+cart.setDelivery(new HomeDelivery("sss", new Date("2025/05/03")));
+console.log(cart.checkout());
 //# sourceMappingURL=app.js.map
