@@ -1,50 +1,33 @@
-class User {
-    name: string;
+class Vehicle {
+    public make: string;
+    private damages: string[];
+    private _model: string;
+    protected run: number;
+    #price: number;
 
-    constructor(name: string) {
-        this.name = name;
+    set model(m: string) {
+        this._model = m
+        this.#price = 100;
     }
 
-}
-
-class Users extends Array<User> {
-    searchByName(name: string) {
-        return this.filter(u => u.name === name);
+    get model() {
+        return this._model;
     }
 
-    override toString(): string {
-        return this.map(u => u.name).join(', ')
+    isPriceEqual(v: Vehicle) {
+        return this.#price === v.#price;
     }
-}
-
-const users = new Users();
-users.push(new User('Вася'));
-users.push(new User('Петя'));
-console.log(users.toString());
-
-class UserList {
-    users: User[];
-
-    push(u: User) {
-        this.users.push(u)
+    addDamage(damage: string) {
+        this.damages.push(damage);
     }
 }
 
-class Payment {
-    date: Date;
-}
-
-class UserWithPayment extends Payment {
-    name: string;
-}
-
-//Правильная композиция
-class UserWithPayment2 {
-    user: User;
-    payment: Payment;
-
-    constructor(user: User, payment: Payment) {
-        this.payment = payment;
-        this.user = user;
+class EuroTruck extends Vehicle {
+    setRun(km: number) {
+        this.run = km / 0.62;
+        //this.damages - error
+        //Не доступны приватные свойства
     }
 }
+
+new Vehicle()
