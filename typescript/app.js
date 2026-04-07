@@ -1,49 +1,36 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class Payment {
-    constructor(id) {
-        this.status = 'new';
-        this.id = id;
-    }
-    pay() {
-        this.status = 'paid';
-    }
-}
-class ParsistedPayment extends Payment {
-    constructor() {
-        const id = Math.random();
-        super(id);
-    }
-    save() {
-        // Сохраняет базу
-    }
-    pay(date) {
-        //super.pay();
-        if (date) {
-            this.paidAt = date;
-        }
-    }
-}
-new ParsistedPayment();
 class User {
-    constructor() {
-        this.name = 'user';
-        console.log(this.name);
+    constructor(name) {
+        this.name = name;
     }
 }
-class Admin extends User {
-    constructor() {
-        super();
-        this.name = 'admin';
-        console.log(this.name);
+class Users extends Array {
+    searchByName(name) {
+        return this.filter(u => u.name === name);
+    }
+    toString() {
+        return this.map(u => u.name).join(', ');
     }
 }
-new Admin();
-// new Error('');
-class HttpError extends Error {
-    constructor(message, code) {
-        super(message);
-        this.code = code !== null && code !== void 0 ? code : 500;
+const users = new Users();
+users.push(new User('Вася'));
+users.push(new User('Петя'));
+console.log(users.toString());
+class UserList {
+    push(u) {
+        this.users.push(u);
+    }
+}
+class Payment {
+}
+class UserWithPayment extends Payment {
+}
+//Правильная композиция
+class UserWithPayment2 {
+    constructor(user, payment) {
+        this.payment = payment;
+        this.user = user;
     }
 }
 //# sourceMappingURL=app.js.map
