@@ -2,7 +2,8 @@ type ElementMap = { key: any, value: any };
 
 class Bucket {
     private mas: ElementMap[] = [];
-    constructor(element: ElementMap) {
+    constructor(element?: ElementMap) {
+        if (!element) { return; }
         this.add(element);
     }
 
@@ -12,8 +13,9 @@ class Bucket {
 
     delete(element: any): boolean {
         if (this.mas.length > 0) {
+            const length = this.mas.length;
             this.mas = this.mas.filter(item => item.key !== element);
-            return true;
+            return length > this.mas.length;
         }
 
         return false;
@@ -30,7 +32,7 @@ class Bucket {
 }
 
 class Map {
-    private buckets: Bucket[] = [];
+    private buckets: Bucket[] = [new Bucket()];
     typeKey: any;
     constructor(iterable?: ElementMap[]) {
         if (!iterable) return;
@@ -50,7 +52,7 @@ class Map {
         for (let i = 0; i < str.length; i++) {
             hash += str.charCodeAt(i);
         }
-        return hash % this.buckets?.length ? this.buckets?.length : 1;
+        return hash % (this.buckets.length || 10);
     }
 
     set(key: any, value: any): ElementMap {

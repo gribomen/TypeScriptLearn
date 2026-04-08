@@ -3,6 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class Bucket {
     constructor(element) {
         this.mas = [];
+        if (!element) {
+            return;
+        }
         this.add(element);
     }
     add(element) {
@@ -11,8 +14,9 @@ class Bucket {
     ;
     delete(element) {
         if (this.mas.length > 0) {
+            const length = this.mas.length;
             this.mas = this.mas.filter(item => item.key !== element);
-            return true;
+            return length > this.mas.length;
         }
         return false;
     }
@@ -27,7 +31,7 @@ class Bucket {
 }
 class Map {
     constructor(iterable) {
-        this.buckets = [];
+        this.buckets = [new Bucket()];
         if (!iterable)
             return;
         iterable.forEach(element => {
@@ -40,13 +44,12 @@ class Map {
      * @returns number захешированный индекс bucket
      */
     hash(element) {
-        var _a, _b;
         let str = element + "";
         let hash = 0;
         for (let i = 0; i < str.length; i++) {
             hash += str.charCodeAt(i);
         }
-        return hash % ((_a = this.buckets) === null || _a === void 0 ? void 0 : _a.length) ? (_b = this.buckets) === null || _b === void 0 ? void 0 : _b.length : 1;
+        return hash % (this.buckets.length || 10);
     }
     set(key, value) {
         const hash_id = this.hash(key);
