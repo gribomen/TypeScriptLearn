@@ -1,34 +1,22 @@
-function logMiddleware<T>(data: T): T {
-    console.log(data);
-    return data;
+interface Vehicle {
+    run: number;
 }
 
-const res = logMiddleware<number>(10);
-
-
-function getSplitHalf<T>(data: Array<T>): Array<T> {
-    const l = data.length / 2;
-    return data.slice(0, 1);
+function kmToMilles<T extends Vehicle>(vehicle: T): T {
+    vehicle.run = vehicle.run / 0.62;
+    return vehicle;
 }
 
-getSplitHalf<number>([1, 3, 4]);
-
-const splite: <T>(data: Array<T>) => Array<T> = getSplitHalf;
-
-interface ILogLine<T> {
-    timeStamp: Date,
-    data: T
+interface LCV extends Vehicle {
+    capacity: number;
 }
 
-type LogLineType<T> = {
-    timeStamp: Date,
-    data: T
-}
+//const vehicle = kmToMilles(new Vehicle());
+//const lcv = kmToMilles(new LCV());
+kmToMilles({ run: 1 });
 
-const logLine: ILogLine<{ a: number }> = {
-    timeStamp: new Date(),
-    data: {
-        a: 1
-    }
+function logId<T extends string | number, Y>(id: T, additionData: Y): { id: T, data: Y } {
+    console.log(id);
+    console.log(additionData);
+    return { id, data: additionData };
 }
-
