@@ -3,8 +3,9 @@
   "compilerOptions": {
     // File Layout
     "noImplicitAny": false,
-    // "rootDir": "./src",
-    // "outDir": "./dist",
+    "rootDir": "./src",
+    "outDir": "./build/",
+    "removeComments": true,
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "commonjs",
@@ -16,8 +17,10 @@
     // and npm install -D @types/node
     // Other Outputs
     "sourceMap": true,
+    "inlineSources": true,
     "declaration": true,
     "declarationMap": true,
+    "declarationDir": "./types",
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
