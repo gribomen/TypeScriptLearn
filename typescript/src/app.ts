@@ -12,3 +12,23 @@ function getSplitHalf<T>(data: Array<T>): Array<T> {
 }
 
 getSplitHalf<number>([1, 3, 4]);
+
+const splite: <T>(data: Array<T>) => Array<T> = getSplitHalf;
+
+interface ILogLine<T> {
+    timeStamp: Date,
+    data: T
+}
+
+type LogLineType<T> = {
+    timeStamp: Date,
+    data: T
+}
+
+const logLine: ILogLine<{ a: number }> = {
+    timeStamp: new Date(),
+    data: {
+        a: 1
+    }
+}
+
