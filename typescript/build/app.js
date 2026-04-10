@@ -1,23 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class UserBuilder {
-    setName(name) {
-        this.name = name;
-        return this;
+class Resp {
+    constructor(data, error) {
+        if (data) {
+            this.data = data;
+        }
+        if (error) {
+            this.error = error;
+        }
     }
-    isAdmin() {
-        return this instanceof AdminBuilder;
+}
+const res = new Resp('data');
+res.error;
+class HTTPResp extends Resp {
+    setCode(code) {
+        this.code = code;
     }
 }
-class AdminBuilder extends UserBuilder {
-}
-const res = new UserBuilder().setName('Вася');
-const res2 = new AdminBuilder().setName('Вася');
-let user = new UserBuilder();
-if (user.isAdmin()) {
-    console.log(user);
-}
-else {
-    console.log(user);
-}
+const res2 = new HTTPResp('data');
 //# sourceMappingURL=app.js.map
