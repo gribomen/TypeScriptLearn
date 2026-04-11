@@ -1,38 +1,23 @@
-type Constructor = new (...args: any[]) => {};
-type GConstructor<T = {}> = new (...args: any[]) => T;
-
-class List {
-    constructor(public items: string[]) {
-    }
+const obj: Record<string, number> = {
+    a: 1,
+    b: 2
 }
 
-class Accordion {
-    isOpened: boolean;
+type TRecord = Record<string, number>;
+type TUNRecord = Record<number, string>;
+function swapKeysAndValues<T extends TRecord>(obj: T): TUNRecord {
+    const obj2 = {};
+    Object.keys(obj).forEach(item => obj2[obj[item]!] = item);
+    return obj2;
 }
 
-type ListType = GConstructor<List>
-type AccordionType = GConstructor<Accordion>
+const res = swapKeysAndValues(obj);
 
-class ExtendedListClass extends List {
-    first() {
-        return this.items[0];
-    }
+console.log(res);
+
+/*
+{
+  1: 'a',
+  2: 'b'
 }
-
-function ExtendedList<TBase extends ListType & AccordionType>(Base: TBase) {
-    return class ExtendedList extends Base {
-        first() {
-            return this.items[0];
-        }
-    }
-
-}
-
-class AccordionList {
-    isOpened: boolean;
-    constructor(public items: string[]) {
-    }
-}
-const list = ExtendedList(List);
-const res = new list(["first", "second"])
-console.log(res.first());
+*/

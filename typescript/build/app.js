@@ -1,21 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class Resp {
-    constructor(data, error) {
-        if (data) {
-            this.data = data;
-        }
-        if (error) {
-            this.error = error;
-        }
-    }
+const obj = {
+    a: 1,
+    b: 2
+};
+function swapKeysAndValues(obj) {
+    const obj2 = {};
+    Object.keys(obj).forEach(item => obj2[obj[item]] = item);
+    return obj2;
 }
-const res = new Resp('data');
-res.error;
-class HTTPResp extends Resp {
-    setCode(code) {
-        this.code = code;
-    }
-}
-const res2 = new HTTPResp('data');
+const res = swapKeysAndValues(obj);
+console.log(res);
 //# sourceMappingURL=app.js.map
